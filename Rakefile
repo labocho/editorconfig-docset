@@ -49,7 +49,7 @@ namespace "docset" do
     ruby "scripts/generate_docsets.rb"
   end
 
-  task "install" do
+  task "install" => "build" do
     source = "editorconfig.docset"
     dest = "#{ENV["HOME"]}/Library/Application Support/Dash/DocSets/editorconfig"
     rm_rf dest
@@ -64,3 +64,4 @@ end
 
 task "clean" => ["repo:clean", "html:clean", "docset:clean"]
 task "default" => "docset:build"
+task "install" => "docset:build"
